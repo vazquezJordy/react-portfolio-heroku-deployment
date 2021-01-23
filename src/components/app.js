@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
-import AboutMe from "./pages/about";
+import About from "./pages/about";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
 import BlogDetail from "./pages/blog-detail";
-import PorfolioManager from "./pages/portfolio-manager";
-import PortfolioDetail from "./portfolio/porfolio-detail";
+import PortfolioManager from "./pages/portfolio-manager";
+import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 import Icons from "../helpers/icons";
@@ -22,7 +21,7 @@ export default class App extends Component {
     Icons();
 
     this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
+      loggedInStatus: "NOT_LOGGED_IN"
     };
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
@@ -32,28 +31,28 @@ export default class App extends Component {
 
   handleSuccessfulLogin() {
     this.setState({
-      loggedInStatus: "LOGGED_IN",
+      loggedInStatus: "LOGGED_IN"
     });
   }
 
   handleUnsuccessfulLogin() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN",
+      loggedInStatus: "NOT_LOGGED_IN"
     });
   }
 
   handleSuccessfulLogout() {
     this.setState({
-      loggedInStatus: "NOT_LOGGED_IN",
+      loggedInStatus: "NOT_LOGGED_IN"
     });
   }
 
   checkLoginStatus() {
     return axios
       .get("https://api.devcamp.space/logged_in", {
-        withCredentials: true,
+        withCredentials: true
       })
-      .then((response) => {
+      .then(response => {
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
 
@@ -61,15 +60,15 @@ export default class App extends Component {
           return loggedIn;
         } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
           this.setState({
-            loggedInStatus: "LOGGED_IN",
+            loggedInStatus: "LOGGED_IN"
           });
         } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
           this.setState({
-            loggedInStatus: "NOT_LOGGED_IN",
+            loggedInStatus: "NOT_LOGGED_IN"
           });
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("Error", error);
       });
   }
@@ -83,8 +82,8 @@ export default class App extends Component {
       <Route
         key="portfolio-manager"
         path="/portfolio-manager"
-        component={PorfolioManager}
-      />,
+        component={PortfolioManager}
+      />
     ];
   }
 
@@ -103,7 +102,7 @@ export default class App extends Component {
 
               <Route
                 path="/auth"
-                render={(props) => (
+                render={props => (
                   <Auth
                     {...props}
                     handleSuccessfulLogin={this.handleSuccessfulLogin}
@@ -112,19 +111,19 @@ export default class App extends Component {
                 )}
               />
 
-              <Route path="/about-me" component={AboutMe} />
+              <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
 
               <Route
                 path="/blog"
-                render={(props) => (
+                render={props => (
                   <Blog {...props} loggedInStatus={this.state.loggedInStatus} />
                 )}
               />
 
               <Route
                 path="/b/:slug"
-                render={(props) => (
+                render={props => (
                   <BlogDetail
                     {...props}
                     loggedInStatus={this.state.loggedInStatus}
@@ -135,7 +134,6 @@ export default class App extends Component {
               {this.state.loggedInStatus === "LOGGED_IN"
                 ? this.authorizedPages()
                 : null}
-
               <Route
                 exact
                 path="/portfolio/:slug"

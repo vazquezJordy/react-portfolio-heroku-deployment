@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class PorfolioDetail extends Component {
+export default class PortfolioDetail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      porfolioItem: {},
+      portfolioItem: {}
     };
   }
 
@@ -17,46 +17,47 @@ export default class PorfolioDetail extends Component {
   getPortfolioItem() {
     axios
       .get(
-        `https://jvazquez.devcamp.space/portfolio/portfolio_items/${this.props.match.params.slug}`,
+        `https://jordan.devcamp.space/portfolio/portfolio_items/${
+          this.props.match.params.slug
+        }`,
         { withCredentials: true }
       )
-      .then((response) => {
+      .then(response => {
         this.setState({
-          porfolioItem: response.data.portfolio_item,
+          portfolioItem: response.data.portfolio_item
         });
       })
-      .catch((error) => {
-        console.log("getting Item detail", error);
+      .catch(error => {
+        console.log("getportfolioitem error", error);
       });
   }
 
   render() {
     const {
       banner_image_url,
+      category,
       description,
-      id,
       logo_url,
       name,
-      position,
       thumb_image_url,
-      url,
-    } = this.state.porfolioItem;
-
-    const logoStyles = {
-      width: "200px"
-    }
+      url
+    } = this.state.portfolioItem;
 
     const bannerStyles = {
       backgroundImage: "url(" + banner_image_url + ")",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      backgroundPositon: "center center"
-    }
+      backgroundPosition: "center center"
+    };
+
+    const logoStyles = {
+      width: "200px"
+    };
 
     return (
       <div className="portfolio-detail-wrapper">
-        <div className="banner" style={bannerStyles}> 
-          <img src={logo_url} style={logoStyles}/>
+        <div className="banner" style={bannerStyles}>
+          <img src={logo_url} style={logoStyles} />
         </div>
 
         <div className="portfolio-detail-description-wrapper">

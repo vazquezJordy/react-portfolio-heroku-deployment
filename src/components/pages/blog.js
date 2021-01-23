@@ -14,7 +14,7 @@ class Blog extends Component {
       totalCount: 0,
       currentPage: 0,
       isLoading: true,
-      blogModalIsOpen: false,
+      blogModalIsOpen: false
     };
 
     this.getBlogItems = this.getBlogItems.bind(this);
@@ -28,36 +28,42 @@ class Blog extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
-  handleDeleteClick(blog){
-    axios.delete(`https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`, { withCredentials:true
-  }).then(response => {
-    this.setState({
-      blogItems: this.state.blogItems.filter(blogItem => {
-        return blog.id !==  blogItem.id
+  handleDeleteClick(blog) {
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`,
+        { withCredentials: true }
+      )
+      .then(response => {
+        this.setState({
+          blogItems: this.state.blogItems.filter(blogItem => {
+            return blog.id !== blogItem.id;
+          })
+        });
+
+        return response.data;
       })
-    });
-    return response.data;
-  }).catch(error => {
-    console.log("deleting error", error)
-  })
+      .catch(error => {
+        console.log("delete blog error", error);
+      });
   }
 
-  handleSuccessfulNewBlogSubmission(blogItem) {
+  handleSuccessfulNewBlogSubmission(blog) {
     this.setState({
       blogModalIsOpen: false,
-      blogItems: [blog].concat(this.state.blogItems),
+      blogItems: [blog].concat(this.state.blogItems)
     });
   }
 
   handleModalClose() {
     this.setState({
-      blogModalIsOpen: false,
+      blogModalIsOpen: false
     });
   }
 
   handleNewBlogClick() {
     this.setState({
-      blogModalIsOpen: true,
+      blogModalIsOpen: true
     });
   }
 
@@ -79,25 +85,26 @@ class Blog extends Component {
 
   getBlogItems() {
     this.setState({
-      currentPage: this.state.currentPage + 1,
+      currentPage: this.state.currentPage + 1
     });
 
     axios
       .get(
-        `https://jvazquez.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}`,
+        `https://jordan.devcamp.space/portfolio/portfolio_blogs?page=${
+          this.state.currentPage
+        }`,
         {
-          withCredentials: true,
+          withCredentials: true
         }
       )
-      .then((response) => {
-        console.log("gettting", response.data);
+      .then(response => {
         this.setState({
           blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
           totalCount: response.data.meta.total_records,
-          isLoading: false,
+          isLoading: false
         });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("getBlogItems error", error);
       });
   }
@@ -116,7 +123,7 @@ class Blog extends Component {
         return (
           <div key={blogItem.id} className="admin-blog-wrapper">
             <BlogItem blogItem={blogItem} />
-            <a className="delete-item" onClick={() => this.handleDeleteClick(blogItem)}>
+            <a onClick={() => this.handleDeleteClick(blogItem)}>
               <FontAwesomeIcon icon="trash" />
             </a>
           </div>
@@ -139,7 +146,7 @@ class Blog extends Component {
         {this.props.loggedInStatus === "LOGGED_IN" ? (
           <div className="new-blog-link">
             <a onClick={this.handleNewBlogClick}>
-              <FontAwesomeIcon icon="plus" />
+              <FontAwesomeIcon icon="plus-circle" />
             </a>
           </div>
         ) : null}

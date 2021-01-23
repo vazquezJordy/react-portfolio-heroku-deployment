@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 
-
 const NavigationComponent = props => {
   const dynamicLink = (route, linkText) => {
     return (
@@ -64,7 +63,7 @@ const NavigationComponent = props => {
       </div>
 
       <div className="right-side">
-        Jordy Vazquez
+        JORDAN HUDGENS
         {props.loggedInStatus === "LOGGED_IN" ? (
           <a onClick={handleSignOut}>
             <FontAwesomeIcon icon="sign-out-alt" />
@@ -75,4 +74,4 @@ const NavigationComponent = props => {
   );
 };
 
-export default withRouter(NavigationComponent)
+export default withRouter(NavigationComponent);

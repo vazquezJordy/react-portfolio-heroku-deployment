@@ -1,37 +1,43 @@
 import React from "react";
-import contactImage from "../../../static/assets/images/contact/JV-logo.jpg";
-import Icons from "../../helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import contactPagePicture from "../../../static/assets/images/auth/login.jpg";
 
-export default function () {
+export default function() {
   return (
-    <div className="contact-page-wrapper">
-      {/* Number, locaiton, email adress */}
+    <div className="content-page-wrapper">
       <div
         className="left-column"
         style={{
-          backgroundImage: `url(${contactImage})`,
-          backgroundPosition: "center",
+          background: "url(" + contactPagePicture + ") no-repeat",
           backgroundSize: "cover",
+          backgroundPosition: "center"
         }}
       />
       <div className="right-column">
-        <div className="left-column-grid">
-          <FontAwesomeIcon icon="phone" />
-         
-          <h3>801-229-2232</h3>
-        </div>
+        <div className="contact-bullet-points">
+          <div className="bullet-point-group">
+            <div className="icon">
+              <FontAwesomeIcon icon="phone" />
+            </div>
 
-        <div className="left-column-grid">
-          <FontAwesomeIcon icon="compass" />
-          
-          <h3>New York, New York</h3>
-        </div>
+            <div className="text">555-555-5555</div>
+          </div>
 
-        <div className="left-column-grid">
-          <FontAwesomeIcon icon="envelope" />
-          
-          <h3>JVCEO@jventerprises.com</h3>
+          <div className="bullet-point-group">
+            <div className="icon">
+              <FontAwesomeIcon icon="envelope" />
+            </div>
+
+            <div className="text">jordan@example.com</div>
+          </div>
+
+          <div className="bullet-point-group">
+            <div className="icon">
+              <FontAwesomeIcon icon="map-marked-alt" />
+            </div>
+
+            <div className="text">Lehi, UT</div>
+          </div>
         </div>
       </div>
     </div>

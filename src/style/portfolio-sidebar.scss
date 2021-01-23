@@ -5,6 +5,7 @@
     .portfolio-thumb-img img {
       width: 100%;
     }
+
     .text-content {
       display: flex;
       justify-content: space-between;
@@ -19,6 +20,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 15px;
+
         .action-icon {
           cursor: pointer;
           color: $offwhite;

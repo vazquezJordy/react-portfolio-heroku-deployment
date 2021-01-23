@@ -10,7 +10,7 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
-      data: [],
+      data: []
     };
 
     this.handleFilter = this.handleFilter.bind(this);
@@ -20,33 +20,33 @@ export default class PortfolioContainer extends Component {
     if (filter === "CLEAR_FILTERS") {
       this.getPortfolioItems();
     } else {
-        this.getPortfolioItems(filter);
+      this.getPortfolioItems(filter);
     }
   }
 
   getPortfolioItems(filter = null) {
     axios
-      .get("https://jvazquez.devcamp.space/portfolio/portfolio_items")
-      .then((response) => {
+      .get("https://jordan.devcamp.space/portfolio/portfolio_items")
+      .then(response => {
         if (filter) {
           this.setState({
-            data: response.data.portfolio_items.filter((item) => {
+            data: response.data.portfolio_items.filter(item => {
               return item.category === filter;
-            }),
+            })
           });
         } else {
           this.setState({
-            data: response.data.portfolio_items,
+            data: response.data.portfolio_items
           });
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }
 
   portfolioItems() {
-    return this.state.data.map((item) => {
+    return this.state.data.map(item => {
       return <PortfolioItem key={item.id} item={item} />;
     });
   }
@@ -81,7 +81,6 @@ export default class PortfolioContainer extends Component {
           >
             Enterprise
           </button>
-
           <button
             className="btn"
             onClick={() => this.handleFilter("CLEAR_FILTERS")}

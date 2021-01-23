@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 import RichTextEditor from "../forms/rich-text-editor";
 
@@ -15,8 +17,8 @@ export default class BlogForm extends Component {
       blog_status: "",
       content: "",
       featured_image: "",
-      apiUrl: "https://jvazquez.devcamp.space/portfolio/portfolio_blogs",
-      apiAction: "post",
+      apiUrl: "https://jordan.devcamp.space/portfolio/portfolio_blogs",
+      apiAction: "post"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,14 +37,16 @@ export default class BlogForm extends Component {
   deleteImage(imageType) {
     axios
       .delete(
-        `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${this.props.blog.id}?image_type=${imageType}`,
+        `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${
+          this.props.blog.id
+        }?image_type=${imageType}`,
         { withCredentials: true }
       )
-      .then((response) => {
+      .then(response => {
         this.props.handleFeaturedImageDelete();
       })
-      .catch((error) => {
-        console.log("delete image error", error);
+      .catch(error => {
+        console.log("deleteImage error", error);
       });
   }
 
@@ -53,8 +57,10 @@ export default class BlogForm extends Component {
         title: this.props.blog.title,
         blog_status: this.props.blog.blog_status,
         content: this.props.blog.content,
-        apiUrl: `https://jvazquez.devcamp.space/portfolio/portfolio_blogs/${this.props.blog.id}`,
-        apiAction: "patch",
+        apiUrl: `https://jordan.devcamp.space/portfolio/portfolio_blogs/${
+          this.props.blog.id
+        }`,
+        apiAction: "patch"
       });
     }
   }
@@ -63,20 +69,20 @@ export default class BlogForm extends Component {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "https://httpbin.org/post",
+      postUrl: "https://httpbin.org/post"
     };
   }
 
   djsConfig() {
     return {
       addRemoveLinks: true,
-      maxFiles: 1,
+      maxFiles: 1
     };
   }
 
   handleFeaturedImageDrop() {
     return {
-      addedfile: (file) => this.setState({ featured_image: file }),
+      addedfile: file => this.setState({ featured_image: file })
     };
   }
 
@@ -106,9 +112,9 @@ export default class BlogForm extends Component {
       method: this.state.apiAction,
       url: this.state.apiUrl,
       data: this.buildForm(),
-      withCredentials: true,
+      withCredentials: true
     })
-      .then((response) => {
+      .then(response => {
         if (this.state.featured_image) {
           this.featuredImageRef.current.dropzone.removeAllFiles();
         }
@@ -117,10 +123,11 @@ export default class BlogForm extends Component {
           title: "",
           blog_status: "",
           content: "",
-          featured_image: "",
+          featured_image: ""
         });
 
         if (this.props.editMode) {
+          // Update blog detail
           this.props.handleUpdateFormSubmission(response.data.portfolio_blog);
         } else {
           this.props.handleSuccessfullFormSubmission(
@@ -128,7 +135,7 @@ export default class BlogForm extends Component {
           );
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("handleSubmit for blog error", error);
       });
 
@@ -137,14 +144,14 @@ export default class BlogForm extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
-        <div className="two-columns">
+      <form onSubmit={this.handleSubmit} className="blog-form-wrapper">
+        <div className="two-column">
           <input
             type="text"
             onChange={this.handleChange}
@@ -165,7 +172,7 @@ export default class BlogForm extends Component {
         <div className="one-column">
           <RichTextEditor
             handleRichTextEditorChange={this.handleRichTextEditorChange}
-            editMode={this.props.editMode}
+            editMode={this.props.editMode || null}
             contentToEdit={
               this.props.editMode && this.props.blog.content
                 ? this.props.blog.content
@@ -181,7 +188,7 @@ export default class BlogForm extends Component {
 
               <div className="image-removal-link">
                 <a onClick={() => this.deleteImage("featured_image")}>
-                  <FontAwesomeIcon icon="trash-alt" />
+                  Remove file
                 </a>
               </div>
             </div>

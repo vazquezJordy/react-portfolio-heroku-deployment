@@ -1,39 +1,35 @@
 import React from "react";
-import LoginImg from "../../../static/assets/images/about/aboutme.jpg";
+import profilePicture from "../../../static/assets/images/bio/headshot.jpg";
 
-export default function () {
+export default function() {
   return (
     <div className="content-page-wrapper">
       <div
         className="left-column"
         style={{
-          backgroundImage: `url(${LoginImg})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover"
+          background: "url(" + profilePicture + ") no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
         }}
       />
-
       <div className="right-column">
-        Odit quasi dolore consectetur porro similique ducimus quae corporis,
-        reprehenderit cupiditate libero rem, non sunt laboriosam alias hic ipsum
-        quidem sapiente? Veritatis quaerat laborum animi aperiam non, atque
-        dicta recusandae. Nobis quos asperiores sapiente assumenda hic deleniti
-        alias nisi harum quas vel. Tenetur quidem magnam eveniet impedit
-        similique nisi alias assumenda earum, eos deserunt provident esse porro
-        laboriosam quos error. Magni natus cupiditate laboriosam fuga beatae
-        voluptatibus hic velit, sed eos temporibus exercitationem explicabo
-        facere, eveniet, aliquam aliquid. Aperiam iusto exercitationem,
-        aspernatur ducimus omnis nemo nihil! Cumque dolorum quod dolores?
-        Deleniti, debitis magni tempora dignissimos sunt molestias iure maxime
-        dicta placeat quo aperiam aliquam quas corporis porro totam eligendi
-        ipsam explicabo dolorum saepe culpa voluptates. Odio maiores est dolor
-        culpa? Dolorem facilis molestiae expedita quos eos pariatur magnam
-        veritatis omnis voluptatem enim consequatur est, ad deserunt atque non
-        nisi. Atque exercitationem ratione quidem inventore dolore voluptatibus
-        quia tempora soluta recusandae. Sit ipsa hic, sed ex quo ea,
-        perspiciatis alias repudiandae mollitia consectetur quas. Fugiat illum,
-        natus corrupti ipsam odit iste nobis officiis error excepturi
-        reprehenderit in soluta obcaecati repudiandae culpa!
+        Maecenas faucibus mollis interdum. Integer posuere erat a ante venenatis
+        dapibus posuere velit aliquet. Sed posuere consectetur est at lobortis.
+        Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+        Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget
+        risus varius blandit sit amet non magna. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida
+        at eget metus. Donec sed odio dui. Cras mattis consectetur purus sit
+        amet fermentum. Etiam porta sem malesuada magna mollis euismod. Nulla
+        vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque
+        ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non
+        commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec
+        elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur
+        et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+        commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis
+        risus eget urna mollis ornare vel eu leo. Morbi leo risus, porta ac
+        consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis
+        euismod semper.
       </div>
     </div>
   );

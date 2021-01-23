@@ -6,44 +6,45 @@ export default class PortfolioItem extends Component {
     super(props);
 
     this.state = {
-      PortfolioItemClass: "",
+      portfolioItemClass: ""
     };
   }
 
-  handelMouseEnter() {
-    this.setState({ PortfolioItemClass: "image-blur" });
+  handleMouseEnter() {
+    this.setState({ portfolioItemClass: "image-blur" });
   }
 
-  handelMouseLeave() {
-    this.setState({ PortfolioItemClass: "" });
+  handleMouseLeave() {
+    this.setState({ portfolioItemClass: "" });
   }
+
   render() {
     const { id, description, thumb_image_url, logo_url } = this.props.item;
     return (
-        <Link to={`/portfolio/${id}`}>
-      <div
-        className="portfolio-item-wrapper"
-        onMouseEnter={() => this.handelMouseEnter}
-        onMouseLeave={() => this.handelMouseLeave}
-      >
+      <Link to={`/portfolio/${id}`}>
         <div
-          className={
-            "portfolio-img-background " + this.state.PortfolioItemClass
-          }
-          style={{
-            backgroundImage: "url(" + thumb_image_url + ")",
-          }}
-        />
+          className="portfolio-item-wrapper"
+          onMouseEnter={() => this.handleMouseEnter()}
+          onMouseLeave={() => this.handleMouseLeave()}
+        >
+          <div
+            className={
+              "portfolio-img-background " + this.state.portfolioItemClass
+            }
+            style={{
+              backgroundImage: "url(" + thumb_image_url + ")"
+            }}
+          />
 
-        <div className="img-text-wrapper">
-          <div className="logo-wrapper">
-            <img src={logo_url} />
+          <div className="img-text-wrapper">
+            <div className="logo-wrapper">
+              <img src={logo_url} />
+            </div>
+
+            <div className="subtitle">{description}</div>
           </div>
-
-          <div className="subtitle">{description}</div>
         </div>
-      </div>
-     </Link>
+      </Link>
     );
   }
 }

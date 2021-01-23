@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    //  please remove this
     this.state = {
       email: "",
       password: "",
@@ -66,28 +65,29 @@ export default class Login extends Component {
         <form onSubmit={this.handleSubmit} className="auth-form-wrapper">
           <div className="form-group">
             <FontAwesomeIcon icon="envelope" />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
           </div>
 
           <div className="form-group">
             <FontAwesomeIcon icon="lock" />
-          <input
-            type="password"
-            name="password"
-            placeholder="Your password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
+            <input
+              type="password"
+              name="password"
+              placeholder="Your password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
           </div>
 
-            <button className="btn" type="submit">Login</button>
-
+          <button className="btn" type="submit">
+            Login
+          </button>
         </form>
       </div>
     );

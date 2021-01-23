@@ -19,6 +19,7 @@
   .left-side {
     display: flex;
   }
+
   .nav-link-wrapper {
     height: 22px;
     border-bottom: 1px solid transparent;
@@ -32,13 +33,13 @@
       text-decoration: none;
       &:hover {
         color: black;
-        border-bottom: 1px solid black;
       }
     }
 
     &:hover {
       border-bottom: 1px solid black;
     }
+
     .nav-link-active {
       border-bottom: 1px solid black;
       color: black;
