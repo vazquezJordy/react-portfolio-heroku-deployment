@@ -1,0 +1,27 @@
+.contact-page-wrapper {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 84px);
+
+    .right-column {
+        display: grid;
+        grid-template-columns: 1fr ;
+        grid-gap: 21px;
+        align-items: stretch;
+        justify-content: space-between;
+
+        .left-column-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 100px;
+            color: $teal;
+
+            &:hover {
+                color: $dark-teal;
+            }
+        }
+    }
+}
